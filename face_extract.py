@@ -31,5 +31,12 @@ def detect_faces(image_path,sample_delta):
         pixel_y = int(np.round(y))
         avg = np.average(sub_image_hsv[pixel_x-sample_delta:pixel_x + sample_delta, pixel_y-sample_delta:pixel_y + sample_delta]) # calculate the average of rectangle
         tmp_sum = tmp_sum + avg
-    ans = tmp_sum/number_of_iteration
+
+    ans = tmp_sum / number_of_iteration
     return ans
+
+    # cv2.rectangle(sub_image_hsv, (pixel_x-sample_delta, pixel_y-sample_delta), (pixel_x + sample_delta, pixel_y + sample_delta), (255, 255, 0), 2)
+    # cv2.imshow("Faces Found", sub_image_hsv)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
+
