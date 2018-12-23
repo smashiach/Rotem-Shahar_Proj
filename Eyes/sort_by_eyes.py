@@ -9,7 +9,7 @@ left_eye_vertical_distance = []
 distance_between_eyes = []
 photo_path_array = []
 
-for img in glob.glob('‪D:\\Shahar\\Project A\\Eyes\\images\\*.jpg'):  # The location of training set
+for img in glob.glob('D:\\Shahar\\Project A\\color_average\\training_set\\*.jpg'):  # The location of training set
     a, b, c, d, e = eye_dimension_extract(img)
     right_eye_horizontal_distance.append(a)
     right_eye_vertical_distance.append(b)
@@ -33,9 +33,15 @@ ratio_eyes = []  # save the ratio according to :
 #
 
 for i in range(0, num_of_pic):
-    ratio_1 = distance_between_eyes[i]/(np.mean(right_eye_horizontal_distance, left_eye_horizontal_distance))
-    ratio_2 = distance_between_eyes[i]/(np.mean(right_eye_vertical_distance, left_eye_vertical_distance))
-    ratio_eyes.append((ratio_1, ratio_2), photo_path_array[i])
+    try:
+        ratio_1 = distance_between_eyes[i]/((right_eye_horizontal_distance[i] + left_eye_horizontal_distance[i])/2)
+    except:
+        ratio_1 = "N/A"
+    try:
+        ratio_2 = distance_between_eyes[i]/((right_eye_vertical_distance[i] + left_eye_vertical_distance[i])/2)
+    except:
+        ratio_2 = "N/A"
+    ratio_eyes.append([(ratio_1, ratio_2), photo_path_array[i]])
 
 
 a = 1
