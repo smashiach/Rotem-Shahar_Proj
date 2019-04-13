@@ -80,16 +80,16 @@ matrix_size = (size_of_ratio_1, 1)
 desirable_value_1 = 0.73032*(np.ones(matrix_size))
 
 
-etta = 0.1
+etta = 0.01
 iterations = 100
 # w_t = np.zeros(iterations)
 cost = np.zeros(iterations)
-threshold = 0.1
+threshold = 0.5
 w_t = 0
 w_t_1 = 1
 ratio_1_T = np.transpose(ratio_1)
 while abs(w_t_1 - w_t) > threshold:
-    gradient_step = -2*np.dot(ratio_1_T,desirable_value_1-w_t*ratio_1)
+    gradient_step = -2*np.dot(ratio_1_T, desirable_value_1 - w_t*ratio_1)
     w_tmp = w_t_1
     w_t_1 = w_t - etta*gradient_step
     w_t = w_tmp
